@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>innerHTML</title>
+    </head>
+    <body>
+        <script>
+            function promf() {
+                let x = prompt("HTML 텍스트 혹은 그냥 텍스트를 입력하세요.");
+                let y = document.getElementById("tx")
+                y.innerHTML = x;
+            }
+        </script>
+        <h3>innerHTML</h3>
+        <hr>
+        <p id = "tx" onclick="promf()">이번 여름에는 어디로 여행을 갈까요?</p>
+    </body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>transform:rotate()</title>
+    </head>
+    <body>
+        <script>
+            x = 2
+            function transform() {
+                let name = document.getElementById("sp");
+                sp.style.transform="scaleX("+x+")";
+                x++;
+            }
+        </script>
+        <h3>클릭하면 2,3,4 배 옆으로 늘어납니다.</h3>
+        <hr>
+        <img id = "sp" onclick = "transform()" src="media/spongebob.png" width = "200px" alt = "스폰지밥">
+    </body>
+</html>
