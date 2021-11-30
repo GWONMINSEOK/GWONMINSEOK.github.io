@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,th,td {
+          border : 1px solid black;
+          border-collapse: collapse;
+        }
+        th,td {
+          padding: 5px;
+        }
+        </style>
+</head>
+<body>
+<script>
+    function loadDoc(){
+var xhr = new XMLHttpRequest();
+var url = 'http://apis.data.go.kr/1741000/DisasterMsg4/getDisasterMsg2List'; /*URL*/
+var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'aoPSzm%2F0QICt9g6T7gz2nRDv56qHl2dFnMdud%2FqGnwThC3lzHuv5xjkJrSSPinJh%2BNMmvc4I94xarsFFTsHtBA%3D%3D'; /*Service Key*/
+queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
+queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('10'); /**/
+queryParams += '&' + encodeURIComponent('type') + '=' + encodeURIComponent('xml'); /**/
+queryParams += '&' + encodeURIComponent('create_date') + '=' + encodeURIComponent('2021/06/22 00:00:00'); /**/
+queryParams += '&' + encodeURIComponent('location_name') + '=' + encodeURIComponent('제주특별자치도'); /**/
+xhr.open('GET', url + queryParams);
+xhr.onreadystatechange = function () {
+    if (this.readyState == 4) {
+        myfunction(this);
+}
+};
+xhttp.open("GET", url+queryParams, true);
+xhttp.send();
+    }
+    function myFunction(xml) {
+          var i;
+          var xmlDoc = xml.responseXML;
+          var table="<tr><th>지역</th><th>메세지</th></tr>";
+          var x = xmlDoc.getElementsByTagName("row");
+          for (i = 0; i <x.length; i++) {
+            table += "<tr><td>" +
+            x[i].getElementsByTagName("location_name")[0].childNodes[0].nodeValue +
+            "</td><td>" +
+            x[i].getElementsByTagName("msg")[0].childNodes[0].nodeValue +
+            "</td></tr>";
+          }
+          document.getElementById("table").innerHTML = table;
+        }
+    </script>
+    <button type="button" onclick="loadDoc()">조회</button>
+    <table id="table"></table>
+</body>
+</html>
